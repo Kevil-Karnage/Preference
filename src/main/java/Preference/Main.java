@@ -6,6 +6,7 @@ import main.java.Preference.models.enums.DeckTypes;
 import main.java.Preference.services.GameService;
 import main.java.Preference.services.PrintService;
 import main.java.Preference.services.RoundService;
+import main.java.Preference.services.SerializeService;
 
 import java.util.Scanner;
 
@@ -25,6 +26,11 @@ public class Main {
         }
         ps.scoreInGame(game);
         ps.gameWinner(game);
+
+        SerializeService ss = new SerializeService();
+        ss.serialize(game);
+        game = ss.deserialize();
+        ps.scoreInGame(game);
     }
 
     public static void setupSettings(Game game, GameService gs, PrintService ps) {
@@ -33,8 +39,8 @@ public class Main {
 
         Scanner scn = new Scanner(System.in);
         ps.readCountRounds();
-//        int countRounds = scn.nextInt();
-        int countRounds = 5;
+        int countRounds = scn.nextInt();
+//        int countRounds = 1;
 
         gs.addRoundsInGame(game, countRounds);
     }

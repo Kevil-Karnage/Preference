@@ -51,9 +51,11 @@ public class PrintService {
     public void scoreInGame(Game g) {
 
         System.out.println("\n| - - |Счёт за игру:| - - |");
+        Player[] players = g.getPlayers();
+        Map<Player, Integer> score = g.getScore();
         for (int i = 0; i < 3; i++) {
-            Player p = g.getPlayers()[i];
-            System.out.printf("%s - %s\n", p.getName(), g.getScore().get(p));
+            Player p = players[i];
+            System.out.printf("%s - %s\n", p.getName(), score.get(p));
         }
     }
 
